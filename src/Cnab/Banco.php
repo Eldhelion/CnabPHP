@@ -30,7 +30,7 @@ class Banco
         } elseif ($codigo == self::SANTANDER) {
             return array(
                 'codigo_do_banco' => self::SANTANDER,
-                'nome_do_banco' => 'BANCO SANTANDER (BRASIL) S/A',
+                'nome_do_banco' => 'BANCO SANTANDER',
             );
         } elseif ($codigo == self::BRADESCO) {
             return array(

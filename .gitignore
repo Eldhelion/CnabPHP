@@ -1,6 +1,7 @@
 # Vim
 *.swp
 *.swo
+.idea
 bin
 vendor
 composer.phar

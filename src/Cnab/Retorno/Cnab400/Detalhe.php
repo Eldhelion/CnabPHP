@@ -341,23 +341,23 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
                 return 'Cancelamento dos dados do rateio';
             }
         } elseif (\Cnab\Banco::CEF == $this->_codigo_banco) {
-            if (1 == $codigo) {
+            if (01 == $codigo) {
                 return 'Entrada Confirmada';
-            } elseif (2 == $codigo) {
+            } elseif (02 == $codigo) {
                 return 'Baixa Confirmada';
-            } elseif (3 == $codigo) {
+            } elseif (03 == $codigo) {
                 return 'Abatimento Concedido';
-            } elseif (4 == $codigo) {
+            } elseif (04 == $codigo) {
                 return 'Abatimento Cancelado';
-            } elseif (5 == $codigo) {
+            } elseif (05 == $codigo) {
                 return 'Vencimento Alterado';
-            } elseif (6 == $codigo) {
+            } elseif (06 == $codigo) {
                 return 'Uso da Empresa Alterado';
-            } elseif (7 == $codigo) {
+            } elseif (07 == $codigo) {
                 return 'Prazo de Protesto Alterado';
-            } elseif (8 == $codigo) {
+            } elseif (08 == $codigo) {
                 return 'Prazo de Devolução Alterado';
-            } elseif (9 == $codigo) {
+            } elseif (09 == $codigo) {
                 return 'Alteração Confirmada';
             } elseif (10 == $codigo) {
                 return 'Alteração com Reemissão de Bloqueto Confirmada';
