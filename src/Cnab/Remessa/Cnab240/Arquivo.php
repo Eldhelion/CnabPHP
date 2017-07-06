@@ -115,7 +115,11 @@ class Arquivo implements \Cnab\Remessa\IArquivo
         $this->headerArquivo->nome_banco = $banco['nome_do_banco'];
         $this->headerArquivo->codigo_remessa_retorno = 1;
         $this->headerArquivo->data_geracao = $this->configuracao['data_geracao'];
-        $this->headerArquivo->hora_geracao = $this->configuracao['data_geracao'];
+
+        if($this->headerArquivo->existField('hora_geracao'))
+        {
+            $this->headerArquivo->hora_geracao = $this->configuracao['data_geracao'];
+        }
         $this->headerArquivo->numero_sequencial_arquivo = $this->configuracao['numero_sequencial_arquivo'];
 
         if ($this->codigo_banco == \Cnab\Banco::CEF) {
