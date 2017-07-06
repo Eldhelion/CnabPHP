@@ -104,8 +104,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
             $this->headerArquivo->conta_dv = $this->configuracao['conta_dv'];
         }
         if ($this->codigo_banco == \Cnab\Banco::SANTANDER) {
-            $this->headerArquivo->conta = $this->configuracao['conta'];
-            $this->headerArquivo->conta_dv = $this->configuracao['conta_dv'];
+            $this->headerArquivo->codigo_cedente = $this->configuracao['codigo_cedente'];
         }
         if ($this->codigo_banco == \Cnab\Banco::CEF) {
             $this->headerArquivo->codigo_cedente = $this->configuracao['codigo_cedente'];
@@ -151,9 +150,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
             $this->headerLote->codigo_cedente = $this->headerArquivo->codigo_cedente;
         }
         if ($this->codigo_banco == \Cnab\Banco::SANTANDER) {
-            $this->headerLote->codigo_cedente = $this->configuracao['codigo_cedente'];
-            $this->headerLote->conta = $this->headerArquivo->conta;
-            $this->headerLote->conta_dv = $this->headerArquivo->conta_dv;
+            $this->headerLote->codigo_cedente = $this->headerArquivo->codigo_cedente;
         }
         if ($this->codigo_banco == \Cnab\Banco::BANCO_DO_BRASIL) {
             $this->headerLote->codigo_convenio = $this->headerArquivo->codigo_convenio;
@@ -518,7 +515,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
 
         $this->trailerLote->qtde_registro_lote = $qtde_registro_lote;
 
-        if ($this->codigo_banco == \Cnab\Banco::CEF || $this->codigo_banco == \Cnab\Banco::SANTANDER) {
+        if ($this->codigo_banco == \Cnab\Banco::CEF ) {
             $this->trailerLote->qtde_titulo_cobranca_simples = $qtde_titulo_cobranca_simples;
             $this->trailerLote->valor_total_titulo_simples = $valor_total_titulo_simples;
         }
