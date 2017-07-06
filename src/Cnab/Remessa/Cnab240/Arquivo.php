@@ -106,7 +106,6 @@ class Arquivo implements \Cnab\Remessa\IArquivo
         if ($this->codigo_banco == \Cnab\Banco::SANTANDER) {
             $this->headerArquivo->conta = $this->configuracao['conta'];
             $this->headerArquivo->conta_dv = $this->configuracao['conta_dv'];
-            $this->headerArquivo->codigo_cedente = $this->configuracao['codigo_cedente'];
         }
         if ($this->codigo_banco == \Cnab\Banco::CEF) {
             $this->headerArquivo->codigo_cedente = $this->configuracao['codigo_cedente'];
