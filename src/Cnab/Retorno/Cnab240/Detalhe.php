@@ -187,12 +187,12 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
                 $nossoNumero
             );
         }
-
+/*
         if (in_array($this->codigo_banco, array(\Cnab\Banco::SANTANDER))) {
             // retira o dv
             $nossoNumero = substr($nossoNumero, 0, -1);
         }
-
+*/
         return $nossoNumero;
     }
 
@@ -373,7 +373,7 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
     }
 
     /**
-     * Retorna o código de liquidação, normalmente usado para 
+     * Retorna o código de liquidação, normalmente usado para
      * saber onde o cliente efetuou o pagamento.
      *
      * @return string
@@ -385,7 +385,7 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
     }
 
     /**
-     * Retorna a descrição do código de liquidação, normalmente usado para 
+     * Retorna a descrição do código de liquidação, normalmente usado para
      * saber onde o cliente efetuou o pagamento.
      *
      * @return string
