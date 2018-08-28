@@ -37,9 +37,9 @@ class Detalhe
     public function listSegmento()
     {
         return array(
-            $this->segmento_p,
-            $this->segmento_q,
-            $this->segmento_r,
+            'p' => $this->segmento_p,
+            'q' => $this->segmento_q,
+            'r' => $this->segmento_r,
         );
     }
 
@@ -48,11 +48,13 @@ class Detalhe
      *
      * @return string
      */
-    public function getEncoded()
+    public function getEncoded($segments = array('p','q','r'))
     {
         $text = array();
-        foreach ($this->listSegmento() as $segmento) {
-            $text[] = $segmento->getEncoded();
+        foreach ($this->listSegmento() as $letter => $segmento) {
+            if (in_array($letter,$segments)) {
+                $text[] = $segmento->getEncoded();
+            }
         }
 
         return implode(Arquivo::QUEBRA_LINHA, $text);

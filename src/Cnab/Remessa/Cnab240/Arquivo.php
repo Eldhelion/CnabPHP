@@ -509,8 +509,13 @@ class Arquivo implements \Cnab\Remessa\IArquivo
             if (!$detalhe->validate()) {
                 throw new \InvalidArgumentException($detalhe->last_error);
             }
+            //Se tipo detalhe for baixa, adicionar apenas segmento P
+            if ($detalhe->segmento_p->codigo_ocorrencia == 2) {
+                $dados .= $detalhe->getEncoded(array('p')).self::QUEBRA_LINHA;
+            } else {
+                $dados .= $detalhe->getEncoded().self::QUEBRA_LINHA;
+            }
 
-            $dados .= $detalhe->getEncoded().self::QUEBRA_LINHA;
         }
 
         $this->trailerLote->qtde_registro_lote = $qtde_registro_lote;
