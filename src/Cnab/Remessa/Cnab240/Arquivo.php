@@ -379,6 +379,9 @@ class Arquivo implements \Cnab\Remessa\IArquivo
                 $detalhe->segmento_r->data_desconto_02 = 0;
                 $detalhe->segmento_r->valor_desconto_02 = 0;
             }
+
+            $detalhe->segmento_p->codigo_protesto = 0; // 3 = Não protestar
+            $detalhe->segmento_p->prazo_protesto = 0;
         }
         $this->detalhes[] = $detalhe;
     }
