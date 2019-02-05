@@ -98,7 +98,8 @@ class Arquivo implements \Cnab\Remessa\IArquivo
 
         if($this->codigo_banco == \Cnab\Banco::BANCO_DO_BRASIL) {
             $this->headerArquivo->codigo_convenio = $this->configuracao['codigo_convenio'];
-            $this->headerArquivo->carteira = $this->configuracao['codigo_carteira'];
+            $this->headerArquivo->carteira = $this->configuracao['carteira'];
+            $this->headerArquivo->codigo_carteira = $this->configuracao['codigo_carteira'];
             $this->headerArquivo->variacao_carteira = $this->configuracao['variacao_carteira'];
             $this->headerArquivo->conta = $this->configuracao['conta'];
             $this->headerArquivo->conta_dv = $this->configuracao['conta_dv'];
