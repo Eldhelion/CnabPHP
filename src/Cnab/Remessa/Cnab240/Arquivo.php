@@ -41,6 +41,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
         if($this->codigo_banco == \Cnab\Banco::BANCO_DO_BRASIL) {
             $campos[] = 'codigo_convenio';
             $campos[] = 'codigo_carteira';
+            $campos[] = 'carteira';
             $campos[] = 'variacao_carteira';
             $campos[] = 'conta_dv';
         }
