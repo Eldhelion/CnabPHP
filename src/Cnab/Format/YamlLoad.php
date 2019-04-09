@@ -99,7 +99,8 @@ class YamlLoad
     {
         $banco = sprintf('%03d', $this->codigo_banco);
         $filenamePadrao = $this->formatPath.'/'.$cnab.'/generic/'.$filename.'.yml';
-        $filenameEspecifico = $this->formatPath.'/'.$cnab.'/'.$banco.'/'.$filename.'.yml';
+        $filenameEspecifico  = $this->formatPath.'/'.$cnab.'/'.$banco.'/'.$filename.'.yml';
+        $filenameEspecifico2 = $this->formatPath.'/'.$cnab.'/'.$banco.'/remessa/'.$filename.'.yml';
 
         if ($this->layoutVersao != null && $this->codigo_banco == 104) {
             // Usado quando o banco possuir mais de uma versao de Layout
@@ -112,6 +113,7 @@ class YamlLoad
 
         $arrayPadrao = $this->loadYaml($filenamePadrao);
         $arrayEspecifico = $this->loadYaml($filenameEspecifico);
+        $arrayEspecifico2 = $this->loadYaml($filenameEspecifico2);
 
         $arrayFormat = array();
 
@@ -121,6 +123,10 @@ class YamlLoad
 
         if ($arrayEspecifico) {
             $arrayFormat[$banco] = $arrayEspecifico;
+        }
+
+        if ($arrayEspecifico2) {
+            $arrayFormat[$banco] = array_merge($arrayEspecifico,$arrayEspecifico2);
         }
 
         return $arrayFormat;
