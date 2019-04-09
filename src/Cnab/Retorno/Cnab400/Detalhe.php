@@ -152,7 +152,7 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
         return trim($this->numero_do_documento);
     }
 
-    /** 
+    /**
      * Retorna o nosso número do boleto (sem o digito).
      *
      * @return string
@@ -341,23 +341,23 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
                 return 'Cancelamento dos dados do rateio';
             }
         } elseif (\Cnab\Banco::CEF == $this->_codigo_banco) {
-            if (01 == $codigo) {
+            if (1 == $codigo) {
                 return 'Entrada Confirmada';
-            } elseif (02 == $codigo) {
+            } elseif (2 == $codigo) {
                 return 'Baixa Confirmada';
-            } elseif (03 == $codigo) {
+            } elseif (3 == $codigo) {
                 return 'Abatimento Concedido';
-            } elseif (04 == $codigo) {
+            } elseif (4 == $codigo) {
                 return 'Abatimento Cancelado';
-            } elseif (05 == $codigo) {
+            } elseif (5 == $codigo) {
                 return 'Vencimento Alterado';
-            } elseif (06 == $codigo) {
+            } elseif (6 == $codigo) {
                 return 'Uso da Empresa Alterado';
-            } elseif (07 == $codigo) {
+            } elseif (7 == $codigo) {
                 return 'Prazo de Protesto Alterado';
-            } elseif (08 == $codigo) {
+            } elseif (8 == $codigo) {
                 return 'Prazo de Devolução Alterado';
-            } elseif (09 == $codigo) {
+            } elseif (9 == $codigo) {
                 return 'Alteração Confirmada';
             } elseif (10 == $codigo) {
                 return 'Alteração com Reemissão de Bloqueto Confirmada';
@@ -534,7 +534,7 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
     }
 
     /**
-     * Retorna o código de liquidação, normalmente usado para 
+     * Retorna o código de liquidação, normalmente usado para
      * saber onde o cliente efetuou o pagamento.
      *
      * @return string
@@ -549,7 +549,7 @@ class Detalhe extends \Cnab\Format\Linha implements \Cnab\Retorno\IDetalhe
     }
 
     /**
-     * Retorna a descrição do código de liquidação, normalmente usado para 
+     * Retorna a descrição do código de liquidação, normalmente usado para
      * saber onde o cliente efetuou o pagamento.
      *
      * @return string

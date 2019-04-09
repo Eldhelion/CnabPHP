@@ -151,6 +151,8 @@ class Arquivo implements \Cnab\Remessa\IArquivo
             $this->headerLote->codigo_cedente = $this->headerArquivo->codigo_cedente;
         }
         if ($this->codigo_banco == \Cnab\Banco::SANTANDER) {
+            $this->headerArquivo->agencia_dv = 0;
+            $this->headerLote->agencia_dv = 0;
             $this->headerLote->codigo_cedente = $this->headerArquivo->codigo_cedente;
         }
         if ($this->codigo_banco == \Cnab\Banco::BANCO_DO_BRASIL) {
@@ -220,7 +222,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
         $detalhe->segmento_p->codigo_banco = $this->headerArquivo->codigo_banco;
         $detalhe->segmento_p->lote_servico = $this->headerLote->lote_servico;
         $detalhe->segmento_p->agencia = $this->headerArquivo->agencia;
-        $detalhe->segmento_p->agencia_dv = $this->headerArquivo->agencia_dv;
+        $detalhe->segmento_p->agencia_dv =$this->configuracao['agencia_dv'];
 
         if ($this->codigo_banco == \Cnab\Banco::CEF) {
             $detalhe->segmento_p->codigo_cedente = $this->headerArquivo->codigo_cedente;

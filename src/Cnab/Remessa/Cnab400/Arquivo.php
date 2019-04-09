@@ -33,11 +33,16 @@ class Arquivo implements \Cnab\Remessa\IArquivo
         switch ($this->codigo_banco) {
             case \Cnab\Banco::CEF:
                 $campos[] = 'operacao';
-                $campos[] = 'codigo_cedente';
                 $campos[] = 'codigo_cedente_dac';
             case \Cnab\Banco::BRADESCO:
                 $campos[] = 'codigo_cedente';
                 $campos[] = 'sequencial_remessa';
+                break;
+            case \Cnab\Banco::BANCO_DO_BRASIL:
+                $campos[] = 'agencia_dac';
+                $campos[] = 'conta_dac';
+                $campos[] = 'numero_sequencial';
+                $campos[] = 'numero_convenio';
                 break;
             default:
                 $campos[] = 'conta_dac';
@@ -73,11 +78,16 @@ class Arquivo implements \Cnab\Remessa\IArquivo
 
         switch ($this->codigo_banco) {
             case \Cnab\Banco::CEF:
-                $this->header->codigo_cedente = $this->configuracao['codigo_cedente'];
             case \Cnab\Banco::BRADESCO:
                 $this->header->codigo_cedente = $this->configuracao['codigo_cedente'];
                 $this->header->sequencial_remessa = $this->configuracao['sequencial_remessa'];
                 $this->header->razao_social = $this->configuracao['razao_social'];
+                break;
+            case \Cnab\Banco::BANCO_DO_BRASIL:
+                $this->header->agencia_dv = $this->configuracao['agencia_dac'];
+                $this->header->conta_dv = $this->configuracao['conta_dac'];
+                $this->header->numero_sequencial = $this->configuracao['numero_sequencial'];
+                $this->header->convenio_lider = $this->configuracao['numero_convenio'];
                 break;
             default:
                 $this->header->conta_dv = $this->configuracao['conta_dac'];
@@ -111,6 +121,15 @@ class Arquivo implements \Cnab\Remessa\IArquivo
                 $detalhe->mensagem = $boleto['mensagem'];
                 $detalhe->data_multa = $boleto['data_multa'];
                 $detalhe->valor_multa = $boleto['valor_multa'];
+            } else if (\Cnab\Banco::BANCO_DO_BRASIL == $this->codigo_banco) {
+                $detalhe->agencia = $this->header->agencia;
+                $detalhe->agencia_dv = $this->header->agencia_dv;
+                $detalhe->conta = $this->header->conta;
+                $detalhe->conta_dv = $this->header->conta_dv;
+                $detalhe->numero_convenio = $boleto['numero_convenio'];
+                $detalhe->variacao_carteira = $boleto['variacao_carteira'];
+                $detalhe->tipo_cobranca = (isset($boleto['tipo_cobranca']) ?: '');
+
             } else {
                 $detalhe->agencia = $this->header->agencia;
                 $detalhe->conta = $this->header->conta;
@@ -144,8 +163,8 @@ class Arquivo implements \Cnab\Remessa\IArquivo
                ocorrência 35 – Cancelamento de Instrução e 38 – Cedente não concorda com alegação do sacado. Para
                os demais códigos de ocorrência este campo deverá ser preenchido com zeros.
             */
-            $detalhe->uso_empresa = isset($boleto['uso_empresa']) 
-                                  ? $boleto['uso_empresa'] 
+            $detalhe->uso_empresa = isset($boleto['uso_empresa'])
+                                  ? $boleto['uso_empresa']
                                   : $boleto['nosso_numero'];
             $detalhe->nosso_numero = $boleto['nosso_numero'];
 
@@ -176,7 +195,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
                 $detalhe->sacado_numero_inscricao = $this->prepareText($boleto['sacado_cpf'], '.-/');
                 $detalhe->nome = $this->prepareText($boleto['sacado_nome']);
             }
-            
+
             $detalhe->logradouro = $this->prepareText($boleto['sacado_logradouro']);
             $detalhe->bairro = $this->prepareText($boleto['sacado_bairro']);
             $detalhe->cep = str_replace('-', '', $boleto['sacado_cep']);
@@ -299,7 +318,7 @@ class Arquivo implements \Cnab\Remessa\IArquivo
                 $property = "_$name";
                 $this->$property = $value;
             } else {
-                throw new InvalidArgumentException("$nome need to be instance of DateTime");
+                throw new InvalidArgumentException("$name need to be instance of DateTime");
             }
         } else {
             throw new Exception("property '$name' dont exists");
